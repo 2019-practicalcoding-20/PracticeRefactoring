@@ -106,13 +106,13 @@ public class Calculate {
 			else {
 				if (currentToken == ')') {
 					if (!this._oStack.isEmpty()) {
-						popToken = (char)this._oStack.pop();
+						popToken = this._oStack.pop();
 					}
 					else {	return false;	}
 					while (popToken != '(') {
 						this._postfix[p++] = popToken;
 						if (!this._oStack.isEmpty()) {
-							popToken = (char)this._oStack.pop(); 
+							popToken = this._oStack.pop();
 						}
 						else {	return false;	}
 					}
@@ -120,12 +120,12 @@ public class Calculate {
 				else {
 					int incomingP = this.inComingPrecedence(currentToken);
 					if (!this._oStack.isEmpty()) {
-						topToken = (char)this._oStack.peek();
+						topToken = this._oStack.peek();
 						while (this.inStackPrecedence(topToken) >= incomingP) {
 							popToken = this._oStack.pop();
 							this._postfix[p++] = popToken;
 							if (!this._oStack.isEmpty()) {
-								topToken = (char)this._oStack.peek();
+								topToken = this._oStack.peek();
 							}
 							else {	break;	}
 						}
@@ -159,7 +159,7 @@ public class Calculate {
 				backToken = this._vStack.pop();
 				frontToken = this._vStack.pop();
 				if (currentToken == '+') {
-					this._vStack.push(frontToken + backToken); 
+					this._vStack.push(frontToken + backToken);
 				}
 				else if (currentToken == '-') {
 					this._vStack.push(frontToken - backToken); 
