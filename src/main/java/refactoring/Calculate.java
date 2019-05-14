@@ -105,16 +105,12 @@ public class Calculate {
 				continue;
 			}
 			if (currentToken == ')') {
-				if (!this._oStack.isEmpty()) {
-					popToken = this._oStack.pop();
-				}
-				else {	return false;	}
+				if (this._oStack.isEmpty()) return false;
+				popToken = this._oStack.pop();
 				while (popToken != '(') {
 					this._postfix[p++] = popToken;
-					if (!this._oStack.isEmpty()) {
-						popToken = this._oStack.pop();
-					}
-					else {	return false;	}
+					if (this._oStack.isEmpty()) return false;
+					popToken = this._oStack.pop();
 				}
 			}
 			else {
