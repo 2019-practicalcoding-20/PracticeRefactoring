@@ -7,195 +7,174 @@ import org.junit.Test;
 public class CalculateTest {
 	Calculate _calc;
 	@Test
-	public void infix2Postfix_µ¡¼À() {
+	public void infix2Postfix_ë§ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1+1");
 		this._calc.infix2Postfix();
 		assertEquals("11+", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_»¬¼À() {
+	public void infix2Postfix_ëº„ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1-1");
 		this._calc.infix2Postfix();
 		assertEquals("11-", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_°ö¼À() {
+	public void infix2Postfix_ê³±ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1*1");
 		this._calc.infix2Postfix();
 		assertEquals("11*", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_³ª´°¼À() {
+	public void infix2Postfix_ë‚˜ëˆ—ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1/1");
 		this._calc.infix2Postfix();
 		assertEquals("11/", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_¸ğµâ·¯() {
+	public void infix2Postfix_ëª¨ë“ˆëŸ¬() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1%1");
 		this._calc.infix2Postfix();
 		assertEquals("11%", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_Á¦°ö() {
+	public void infix2Postfix_ì œê³±() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1^1");
 		this._calc.infix2Postfix();
 		assertEquals("11^", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_¿¬»ê¼ø¼­_µ¡¼À_°ö¼À() {
+	public void infix2Postfix_ì—°ì‚°ìˆœì„œ_ë§ì…ˆ_ê³±ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1+2*3");
 		this._calc.infix2Postfix();
 		assertEquals("123*+", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_¿¬»ê¼ø¼­_µ¡¼À_°ö¼À_Á¦°ö() {
+	public void infix2Postfix_ì—°ì‚°ìˆœì„œ_ë§ì…ˆ_ê³±ì…ˆ_ì œê³±() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1+2*3^4");
 		this._calc.infix2Postfix();
 		assertEquals("1234^*+", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_¿¬»ê¼ø¼­_»¬¼À_³ª´°¼À() {
+	public void infix2Postfix_ì—°ì‚°ìˆœì„œ_ëº„ì…ˆ_ë‚˜ëˆ—ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1-2/3");
 		this._calc.infix2Postfix();
 		assertEquals("123/-", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_¿¬»ê¼ø¼­_°ıÈ£_µ¡¼À_°ö¼À() {
+	public void infix2Postfix_ì—°ì‚°ìˆœì„œ_ê´„í˜¸_ë§ì…ˆ_ê³±ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("(1+2)*3");
 		this._calc.infix2Postfix();
 		assertEquals("12+3*", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_¿¬»ê¼ø¼­_°ıÈ£_»¬¼À_³ª´°¼À() {
+	public void infix2Postfix_ì—°ì‚°ìˆœì„œ_ê´„í˜¸_ëº„ì…ˆ_ë‚˜ëˆ—ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("(1-2)/3");
 		this._calc.infix2Postfix();
 		assertEquals("12-3/", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_Å«¼ıÀÚ() {
+	public void infix2Postfix_í°ìˆ«ì() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1-2/3+125123415123415123415134");
 		this._calc.infix2Postfix();
 		assertEquals("123/-125123415123415123415134+", this._calc.postfix());
 	}
 	@Test
-	public void infix2Postfix_Å«¼ıÀÚ_¿©·¯°³() {
+	public void infix2Postfix_í°ìˆ«ì_ì—¬ëŸ¬ê°œ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1849723845792-2834793475/323523457568687+125123415123415123415134");
 		this._calc.infix2Postfix();
 		assertEquals("18497238457922834793475323523457568687/-125123415123415123415134+", this._calc.postfix());
 	}
-	@Test
-	public void infix2Postfix_¼Ò¼ö() {
-		this._calc = new Calculate();
-		this._calc.setInfix("1.1-2/3");
-		this._calc.infix2Postfix();
-		assertEquals("1.123/-", this._calc.postfix());
-	}
 	
 	
 	
 	@Test
-	public void evalPostfix_µ¡¼À() {
+	public void evalPostfix_ë§ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1+1");
 		this._calc.infix2Postfix();
 		assertEquals("2.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_»¬¼À() {
+	public void evalPostfix_ëº„ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1-1");
 		this._calc.infix2Postfix();
 		assertEquals("0.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_°ö¼À() {
+	public void evalPostfix_ê³±ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("8*4");
 		this._calc.infix2Postfix();
 		assertEquals("32.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_³ª´°¼À_Á¤¼ö°á°ú() {
+	public void evalPostfix_ë‚˜ëˆ—ì…ˆ_ì •ìˆ˜ê²°ê³¼() {
 		this._calc = new Calculate();
 		this._calc.setInfix("8/4");
 		this._calc.infix2Postfix();
 		assertEquals("2.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_³ª´°¼À_¼Ò¼ö°á°ú() {
+	public void evalPostfix_ë‚˜ëˆ—ì…ˆ_ì†Œìˆ˜ê²°ê³¼() {
 		this._calc = new Calculate();
 		this._calc.setInfix("4/8");
 		this._calc.infix2Postfix();
 		assertEquals("0.5", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_¸ğµâ·¯() {
+	public void evalPostfix_ëª¨ë“ˆëŸ¬() {
 		this._calc = new Calculate();
 		this._calc.setInfix("9%4");
 		this._calc.infix2Postfix();
 		assertEquals("1.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_Á¦°ö() {
+	public void evalPostfix_ì œê³±() {
 		this._calc = new Calculate();
 		this._calc.setInfix("2^5");
 		this._calc.infix2Postfix();
 		assertEquals("32.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_¿¬»ê¼ø¼­_µ¡¼À_°ö¼À() {
+	public void evalPostfix_ì—°ì‚°ìˆœì„œ_ë§ì…ˆ_ê³±ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("1+2*3");
 		this._calc.infix2Postfix();
 		assertEquals("7.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_¿¬»ê¼ø¼­_»¬¼À_³ª´°¼À() {
+	public void evalPostfix_ì—°ì‚°ìˆœì„œ_ëº„ì…ˆ_ë‚˜ëˆ—ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("3-9/3");
 		this._calc.infix2Postfix();
 		assertEquals("0.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_¿¬»ê¼ø¼­_°ıÈ£_µ¡¼À_°ö¼À() {
+	public void evalPostfix_ì—°ì‚°ìˆœì„œ_ê´„í˜¸_ë§ì…ˆ_ê³±ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("(1+2)*3");
 		this._calc.infix2Postfix();
 		assertEquals("9.0", ""+this._calc.evalPostfix());
 	}
 	@Test
-	public void evalPostfix_¿¬»ê¼ø¼­_°ıÈ£_»¬¼À_³ª´°¼À() {
+	public void evalPostfix_ì—°ì‚°ìˆœì„œ_ê´„í˜¸_ëº„ì…ˆ_ë‚˜ëˆ—ì…ˆ() {
 		this._calc = new Calculate();
 		this._calc.setInfix("(3-6)/3");
 		this._calc.infix2Postfix();
 		assertEquals("-1.0", ""+this._calc.evalPostfix());
-	}
-	@Test
-	public void evalPostfix_Å«¼ıÀÚ() {
-		this._calc = new Calculate();
-		this._calc.setInfix("1-6/3+125123415123415123415134");
-		this._calc.infix2Postfix();
-		assertEquals("125123415123415123415133", ""+this._calc.evalPostfix());
-	}
-	@Test
-	public void evalPostfix_¼Ò¼ö() {
-		this._calc = new Calculate();
-		this._calc.setInfix("1.1-2/4");
-		this._calc.infix2Postfix();
-		assertEquals("0.6", this._calc.postfix());
 	}
 }
