@@ -127,14 +127,20 @@ public class Calculate {
 			}
 			this.showOStack();
 		}
+
+		arrangePostfix(p);
+		return true;
+	}
+
+	private void arrangePostfix(int postfixIndex) {
+		char popToken;
 		while (!this._oStack.isEmpty()) {
 			popToken = this._oStack.pop();
-			this._postfix[p++] = popToken;
+			this._postfix[postfixIndex++] = popToken;
 		}
 		char[] temp = this._postfix;
-		this._postfix = new char[p];
-		System.arraycopy(temp, 0, this._postfix, 0, p);
-		return true;
+		this._postfix = new char[postfixIndex];
+		System.arraycopy(temp, 0, this._postfix, 0, postfixIndex);
 	}
 
 	public double evalPostfix() {
