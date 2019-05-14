@@ -114,10 +114,9 @@ public class Calculate {
 				}
 			}
 			else {
-				int incomingP = this.inComingPrecedence(currentToken);
 				if (!this._oStack.isEmpty()) {
 					topToken = this._oStack.peek();
-					while (this.inStackPrecedence(topToken) >= incomingP) {
+					while (inStackPrecedence(topToken) >= inComingPrecedence(currentToken)) {
 						popToken = this._oStack.pop();
 						this._postfix[p++] = popToken;
 						if (!this._oStack.isEmpty()) {
