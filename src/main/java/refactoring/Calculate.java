@@ -102,47 +102,45 @@ public class Calculate {
 			currentToken = this._infix[i++];
 			if (this.isDigit(currentToken)) {
 				this._postfix[p++] = currentToken;
+				continue;
+			}
+			if (currentToken == ')') {
+				if (this._oStack.isEmpty()) return false;
+				popToken = this._oStack.pop();
+				while (popToken != '(') {
+					this._postfix[p++] = popToken;
+					if (this._oStack.isEmpty()) return false;
+					popToken = this._oStack.pop();
+				}
 			}
 			else {
-				if (currentToken == ')') {
-					if (!this._oStack.isEmpty()) {
-						popToken = (char)this._oStack.pop();
-					}
-					else {	return false;	}
-					while (popToken != '(') {
+				if (!this._oStack.isEmpty()) {
+					topToken = this._oStack.peek();
+					while (inStackPrecedence(topToken) >= inComingPrecedence(currentToken)) {
+						popToken = this._oStack.pop();
 						this._postfix[p++] = popToken;
-						if (!this._oStack.isEmpty()) {
-							popToken = (char)this._oStack.pop(); 
-						}
-						else {	return false;	}
+						if (this._oStack.isEmpty()) break;
+						topToken = this._oStack.peek();
 					}
 				}
-				else {
-					int incomingP = this.inComingPrecedence(currentToken);
-					if (!this._oStack.isEmpty()) {
-						topToken = (char)this._oStack.peek();
-						while (this.inStackPrecedence(topToken) >= incomingP) {
-							popToken = this._oStack.pop();
-							this._postfix[p++] = popToken;
-							if (!this._oStack.isEmpty()) {
-								topToken = (char)this._oStack.peek();
-							}
-							else {	break;	}
-						}
-					}
-					this._oStack.push(currentToken);
-				}
-				this.showOStack();
+				this._oStack.push(currentToken);
 			}
+			this.showOStack();
 		}
+
+		arrangePostfix(p);
+		return true;
+	}
+
+	private void arrangePostfix(int postfixIndex) {
+		char popToken;
 		while (!this._oStack.isEmpty()) {
 			popToken = this._oStack.pop();
-			this._postfix[p++] = popToken;
+			this._postfix[postfixIndex++] = popToken;
 		}
 		char[] temp = this._postfix;
-		this._postfix = new char[p];
-		System.arraycopy(temp, 0, this._postfix, 0, p);
-		return true;
+		this._postfix = new char[postfixIndex];
+		System.arraycopy(temp, 0, this._postfix, 0, postfixIndex);
 	}
 
 	public double evalPostfix() {
@@ -159,7 +157,7 @@ public class Calculate {
 				backToken = this._vStack.pop();
 				frontToken = this._vStack.pop();
 				if (currentToken == '+') {
-					this._vStack.push(frontToken + backToken); 
+					this._vStack.push(frontToken + backToken);
 				}
 				else if (currentToken == '-') {
 					this._vStack.push(frontToken - backToken); 
