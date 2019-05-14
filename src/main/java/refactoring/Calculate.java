@@ -102,38 +102,37 @@ public class Calculate {
 			currentToken = this._infix[i++];
 			if (this.isDigit(currentToken)) {
 				this._postfix[p++] = currentToken;
+				continue;
 			}
-			else {
-				if (currentToken == ')') {
+			if (currentToken == ')') {
+				if (!this._oStack.isEmpty()) {
+					popToken = this._oStack.pop();
+				}
+				else {	return false;	}
+				while (popToken != '(') {
+					this._postfix[p++] = popToken;
 					if (!this._oStack.isEmpty()) {
 						popToken = this._oStack.pop();
 					}
 					else {	return false;	}
-					while (popToken != '(') {
+				}
+			}
+			else {
+				int incomingP = this.inComingPrecedence(currentToken);
+				if (!this._oStack.isEmpty()) {
+					topToken = this._oStack.peek();
+					while (this.inStackPrecedence(topToken) >= incomingP) {
+						popToken = this._oStack.pop();
 						this._postfix[p++] = popToken;
 						if (!this._oStack.isEmpty()) {
-							popToken = this._oStack.pop();
+							topToken = this._oStack.peek();
 						}
-						else {	return false;	}
+						else {	break;	}
 					}
 				}
-				else {
-					int incomingP = this.inComingPrecedence(currentToken);
-					if (!this._oStack.isEmpty()) {
-						topToken = this._oStack.peek();
-						while (this.inStackPrecedence(topToken) >= incomingP) {
-							popToken = this._oStack.pop();
-							this._postfix[p++] = popToken;
-							if (!this._oStack.isEmpty()) {
-								topToken = this._oStack.peek();
-							}
-							else {	break;	}
-						}
-					}
-					this._oStack.push(currentToken);
-				}
-				this.showOStack();
+				this._oStack.push(currentToken);
 			}
+			this.showOStack();
 		}
 		while (!this._oStack.isEmpty()) {
 			popToken = this._oStack.pop();
